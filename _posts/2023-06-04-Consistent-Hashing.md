@@ -7,7 +7,7 @@ categories: [System Design]
 banner: "![image](/assets/img/2023-06-04-Consistent-Hashing/consistent-hash.webp)"
 ---
 
-대규모 시스템을 설계하는 구성 요소는 어떤 것들이 있을까요?
+대규모 시스템을 설계하는데 필요한 구성 요소에는 어떤 것들이 있을까요?
 
 이번 글에서는 라우팅 시스템 등에서 자주 사용되는 안정 해시(Consistent Hash)를 직접 구현해보고 데이터를 기반으로 이야기해봅니다.
 
