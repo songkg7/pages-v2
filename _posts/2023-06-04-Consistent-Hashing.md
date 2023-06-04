@@ -255,7 +255,7 @@ Case 1 과 마찬가지로, 첫 번째 요청에서 캐시가 바로 히트할 �
 
 - [Java HashMap 은 어떻게 동작하는가](https://d2.naver.com/helloworld/831311)
 - [안정 해시 설계](https://donghyeon.dev/%EC%9D%B8%ED%94%84%EB%9D%BC/2022/03/20/%EC%95%88%EC%A0%95-%ED%95%B4%EC%8B%9C-%EC%84%A4%EA%B3%84/)
-- https://github.com/Lonor/websocket-cluster
+- [Lonor/websocket-cluster](https://github.com/Lonor/websocket-cluster)
 
 [^fn-nth-1]: [SimpleHashRouterTest](https://github.com/songkg7/consistent-hashing-sample/blob/main/src/test/java/com/example/consistenthashingsample/router/SimpleHashRouterTest.java)
 
