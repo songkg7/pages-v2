@@ -83,7 +83,7 @@ doSomething(model);
 - Young 영역(Young Generation 영역): 새롭게 생성한 객체의 대부분이 여기에 위치한다. 대부분의 객체가 금방 접근 불가능한 상태가 되기 때문에 매우 많은 객체가 Young 영역에 생성되었다가 사라진다. 이 영역에서 객체가 사라질 때 Minor GC 가 발생한다고 말한다.
 - Old 영역(Old Generation 영역): 접근 불가능 상태로 되지 않아 Young 영역에서 살아남은 객체가 여기로 복사된다. 대부분 Young 영역보다 크게 할당하며, 크기가 큰 만큼 Young 영역보다 GC 는 적게 발생한다. 이 영역에서 객체가 사라질 때 Major GC(혹은 Full GC)가 발생한다고 말한다.
 
-각 객체는 Minor GC 에서 살아남을 때마다 카운트가 증가하는 age bit 를 가지고 있으며, age bit 가 **MaxTenuringThreshold** 라는 설정값을 초과하게 되는 경우 Old 영역으로 이동하게 된다. 하지만 age bit 가 설정값을 초과하지 않더라고 Survivor 영역의 메모리가 부족한 경우 객체가 Old 로 이동될 수 있다.
+각 객체는 Minor GC 에서 살아남을 때마다 카운트가 증가하는 age bit 를 가지고 있으며, age bit 가 **MaxTenuringThreshold** 라는 설정값을 초과하게 되는 경우 Old 영역으로 이동하게 된다. 하지만 age bit 가 설정값을 초과하지 않더라도 Survivor 영역의 메모리가 부족한 경우 객체가 Old 로 이동될 수 있다.
 
 > Permanent 는 생성된 객체의 주소값이 저장되는 공간이다. 클래스 로더에 의해 load 되는 Class, Method 등에 대한 Meta 정보가 저장되는 영역이고 JVM 에 의해 사용된다. Java 7 까지는 Heap 영역에 존재했다.
 {: .prompt-info}
