@@ -37,7 +37,7 @@ _해당 issue 가 해결된 모습_
 
 이 issue 는 2023-02-23 에 릴리즈되며 해결되었습니다.
 
-## initializeSchema
+### initializeSchema
 
 ```yaml
 spring:
