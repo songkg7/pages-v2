@@ -81,4 +81,4 @@ spring:
 
 ## Reference
 
-- https://spring.io/blog/2023/06/21/docker-compose-support-in-spring-boot-3-1
+- [Docker Compose Support in Spring Boot 3.1](https://spring.io/blog/2023/06/21/docker-compose-support-in-spring-boot-3-1)
