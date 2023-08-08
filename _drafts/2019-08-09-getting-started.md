@@ -5,6 +5,7 @@ date: 2019-08-09 20:55:00 +0800
 categories: [Blogging, Tutorial]
 tags: [getting started]
 pin: true
+img_path: '/posts/20180809'
 ---
 
 ## Prerequisites
@@ -71,7 +72,7 @@ Starting with version `4.1.0`, if you want to overwrite the SASS variables defin
 
 ### Customing Static Assets
 
-Static assets configuration was introduced in version `5.1.0`. The CDN of the static assets is defined by file `_data/assets/cross_origin.yml`{: .filepath }, and you can replace some of them according to the network conditions in the region where your website is published.
+Static assets configuration was introduced in version `5.1.0`. The CDN of the static assets is defined by file `_data/origin/cors.yml`{: .filepath }, and you can replace some of them according to the network conditions in the region where your website is published.
 
 Also, if you'd like to self-host the static assets, please refer to the [_chirpy-static-assets_](https://github.com/cotes2020/chirpy-static-assets#readme).
 
@@ -113,7 +114,9 @@ There are a few things to get ready for.
 
 Next, configure the _Pages_ service.
 
-1. Browse to your repository on GitHub. Select the tab _Settings_, then click _Pages_ in the left navigation bar. Then, in the **Source** section (under _Build and deployment_), select [**GitHub Actions**][pages-workflow-src] from the dropdown menu.
+1. Browse to your repository on GitHub. Select the tab _Settings_, then click _Pages_ in the left navigation bar. Then, in the **Source** section (under _Build and deployment_), select [**GitHub Actions**][pages-workflow-src] from the dropdown menu.  
+![Build source](pages-source-light.png){: .light .border .normal w='375' h='140' }
+![Build source](pages-source-dark.png){: .dark .normal w='375' h='140' }
 
 2. Push any commits to GitHub to trigger the _Actions_ workflow. In the _Actions_ tab of your repository, you should see the workflow _Build and Deploy_ running. Once the build is complete and successful, the site will be deployed automatically.
 
