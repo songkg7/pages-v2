@@ -5,7 +5,7 @@ aliases: null
 tags: [url, system-architecture, kotlin]
 categories: null
 mermaid: true
-image: /assets/img/2023-08-16-URL-Shortener/banner.png
+image: /assets/img/2023-08-16-URL-Shortener/banner.webp
 ---
 
 > 코드는 [GitHub](https://github.com/songkg7/url-shortener-sample) 에서 확인하실 수 있습니다.
