@@ -2,7 +2,7 @@
 title: "[대규모 시스템 설계 기초] 직접 구현해보는 URL 단축기"
 date: 2023-08-16 13:08:09 +0900
 aliases: null
-tags: [url, system-architecture]
+tags: [url, system-architecture, kotlin]
 categories: null
 mermaid: true
 ---
