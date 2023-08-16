@@ -190,6 +190,7 @@ http://localhost:8080/{shortUrl} 로 접근해보면 정상적으로 리다이�
 몇가지 개선해볼 수 있는 사항들 입니다.
 
 - ID 생성 전략을 더 정밀하게 제어하면 shortUrl 을 더 단축시킬 수 있습니다.
+  - 트래픽이 많다면 동시성에 대한 문제를 반드시 고민해야할 것입니다.
   - Snowflake
 - host 부분도 DNS 를 사용하면 더 단축시킬 수 있습니다.
-- 요청이 많을 경우, Persistence Layer 에 Cache 를 적용하면 더 빠른 응답을 구현할 수 있습니다.
+- Persistence Layer 에 Cache 를 적용하면 더 빠른 응답을 구현할 수 있습니다.
