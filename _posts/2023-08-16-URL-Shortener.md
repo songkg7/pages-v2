@@ -18,11 +18,13 @@ URL 길이를 줄이는 것은 이메일 또는 SMS 전송에서 URL 이 단편�
 
 먼저 결과물을 살펴보고 시작할게요.
 
-다음 명령을 통해서 이번 글에서 사용하는 url 단축기를 바로 실행시킬 수 있습니다.
+아래 명령을 통해서 이번 글에서 구현할 url 단축기를 바로 실행시킬 수 있습니다.
 
 ```bash
-docker run -d -p 8080:8080 --name tinyurl songkg7/url-shortener
+docker run -d -p 8080:8080 songkg7/url-shortener
 ```
+
+사용법은 아래와 같습니다. 단축시킬 긴 url 을 longUrl 의 값으로 넣어주시면 됩니다.
 
 ```bash
 curl -X POST --location "http://localhost:8080/api/v1/shorten" \
@@ -30,7 +32,7 @@ curl -X POST --location "http://localhost:8080/api/v1/shorten" \
     -d "{
             \"longUrl\": \"https://www.google.com/search?q=url+shortener&sourceid=chrome&ie=UTF-8\"
         }"
-# tN47tML
+# tN47tML, 임의의 값이 반환됩니다.
 ```
 
 이제 웹페이지에서 `http://localhost:8080/tN47tML` 로 접근해보면,
