@@ -179,6 +179,9 @@ chezmoi init --apply $GITHUB_USERNAME
 
 이번 글에서는 기본적인 사용법에 대해 적어보았으니, 다음 글에서는 기본적인 **chezmoi** 의 설정 파일 관리 및 보안성 유지에 대해서 살펴보겠습니다.
 
+> 제 설정이 궁금하시다면 [여기](https://github.com/songkg7/dotfiles) 에서 확인하실 수 있습니다.
+{: .prompt-info}
+
 ## Reference
 
 - [chezmoi](https://www.chezmoi.io)
