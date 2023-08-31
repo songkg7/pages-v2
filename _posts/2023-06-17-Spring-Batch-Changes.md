@@ -12,9 +12,21 @@ Spring Batch 5.0 이 되면서 변경된 사항들을 정리합니다.
 
 ### `@EnableBatchProcessing` 은 더 이상 권장되지 않음
 
+```java
+@AutoConfiguration(after = { HibernateJpaAutoConfiguration.class, TransactionAutoConfiguration.class })
+@ConditionalOnClass({ JobLauncher.class, DataSource.class, DatabasePopulator.class })
+@ConditionalOnBean({ DataSource.class, PlatformTransactionManager.class })
+@ConditionalOnMissingBean(value = DefaultBatchConfiguration.class, annotation = EnableBatchProcessing.class) // 5.0 부터 추가되었습니다.
+@EnableConfigurationProperties(BatchProperties.class)
+@Import(DatabaseInitializationDependencyConfigurer.class)
+public class BatchAutoConfiguration {
+// 생략
+}
+```
+
 이전에는 `@EnableBatchProcessing` 어노테이션을 통해서 스프링 배치의 스프링 부트 자동설정을 활성화할 수 있었습니다. 하지만 이제는 스프링 부트의 자동설정을 사용하기 위해서는 삭제해야 합니다. `@EnableBatchProcessing` 명시하는 방법 또는 `DefaultBatchConfiguration` 을 상속하여 활성화되는 빈은 이제 스프링 부트의 자동설정을 밀어내고(back-off), 애플리케이션의 설정을 커스텀하는 용도로 사용됩니다.
 
-따라서 `@EnableBatchProcessing` 이나 `DefaultBatchConfigration` 을 사용하면 `spring.batch.jdbc.initialize-schema` 등의 스프링 부트 설정이 동작하지 않습니다. 또한 부트를 실행시킬 때 Job 이 자동으로 실행되지 않으므로 Runner 의 구현이 필요합니다.
+따라서 `@EnableBatchProcessing` 이나 `DefaultBatchConfigration` 을 사용하면 `spring.batch.jdbc.initialize-schema` 등의 기본 설정이 동작하지 않습니다. 또한 부트를 실행시킬 때 Job 이 자동으로 실행되지 않으므로 Runner 의 구현이 필요합니다.
 
 ### 다중 Job 실행은 더 이상 지원되지 않음
 
