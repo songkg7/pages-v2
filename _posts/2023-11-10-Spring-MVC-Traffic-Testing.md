@@ -320,8 +320,8 @@ _closed 가 10k 에 미치지 못한다. 정상적으로 커넥션이 생성되�
 
 1. `max-connections` 속성은 애플리케이션의 TCP 최대 커넥션 개수와 연관이 있을 것이다.
 2. request timeout 은 TCP 연결을 맺지 못한 상태로 20s 가 경과하여 발생한 connection-timeout 에러일 것이다.
-3. `accept-count` 속성도 마찬가지로 TCP 최대 커넥션 개수와 연관이 있을 것이다.
-4. `max-connections` 을 증가시키면 커넥션을 맺은 상태이기 때문에 connection timeout 을 회피할 수 있을 것이다.
+3. `accept-count` 속성도 마찬가지로 TCP 최대 커넥션 개수와 연관이 있을 것이다. (8192 + 100 이 8293 의 근사치이기 때문에)
+4. `max-connections` 을 증가시키면 커넥션을 더 많이 맺을 수 있기 때문에, connection timeout 을 회피할 수 있을 것이다.
 
 이 후 단계는 위 가설을 하나씩 검증해본다. 도커는 OS 를 공유하기 때문에, 모든 테스트가 독립적이도록 설정을 바꿔야할 때마다 기존에 동작 중이였던 컨테이너는 정지 후 새로운 컨테이너를 생성하며 진행했다.
 
