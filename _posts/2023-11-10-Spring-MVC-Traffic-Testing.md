@@ -209,7 +209,7 @@ k6 run --out influxdb=http://localhost:8086/myk6db spike-test.js
 
 이 시점에 기본 톰캣 설정의 `connection-timeout` 인 20s 를 넘었다. 하지만 타임아웃 에러는 발생하지 않았고, 20s 이상을 기다려서라도 모두 처리되었다. `connection-timeout` 이 request 발생 순간부터는 아니라는 것을 추측할 수 있는 대목이다. 자세한 부분은 이후 다시 설명한다.
 
-#### 2000 requests
+### 2000 requests
 
 이쯤에서 한 번 고비가 찾아온다.
 
