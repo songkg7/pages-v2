@@ -141,7 +141,7 @@ influx ping
 # OK
 ```
 
-http://localhost:3000 으로 접근하여 그라파나가 정상적으로 동작하는 것을 확인한다.
+<http://localhost:3000> 으로 접근하여 그라파나가 정상적으로 동작하는 것을 확인한다.
 
 ![image](/assets/img/2023-11-10-Spring-MVC-Traffic-Testing/Pasted-image-20231108094916.webp)
 
@@ -323,7 +323,7 @@ _closed 가 10k 에 미치지 못한다. 정상적으로 커넥션이 생성되�
 3. `accept-count` 속성도 마찬가지로 TCP 최대 커넥션 개수와 연관이 있을 것이다.
 4. `max-connections` 을 증가시키면 커넥션을 맺은 상태이기 때문에 connection timeout 을 회피할 수 있을 것이다.
 
-이 후 단계는 위 가설을 하나씩 검증해본다. 도커는 OS 를 공유하기 때문에, 모든 테스트가 독립적이도록 기존 동작 중은 컨테이너를 정지 후 새로운 컨테이너를 생성하며 진행했다.
+이 후 단계는 위 가설을 하나씩 검증해본다. 도커는 OS 를 공유하기 때문에, 모든 테스트가 독립적이도록 설정을 바꿔야할 때마다 기존에 동작 중이였던 컨테이너는 정지 후 새로운 컨테이너를 생성하며 진행했다.
 
 #### 1. Max Connections
 
@@ -408,7 +408,7 @@ private int acceptCount = 100;
 ![](https://i.imgur.com/LVUTzYy.png)
 
 > 그렇다면 `threads.max`, `max-connections`, `accept-count` 를 모두 1로 할당하면 어떻게 될까?
-> 
+>
 > 처리량에 따라서 시간 안에 connection 이 수락되지 않은 요청은 timeout 이 발생할 것이다. 현재 환경에서는 3개가 성공하고 7개가 실패했다. 여기서 `acceptCount` 를 10으로 늘리면, 모든 요청에 커넥션이 수락되므로 모두 성공한다.
 {: .prompt-tip}
 
