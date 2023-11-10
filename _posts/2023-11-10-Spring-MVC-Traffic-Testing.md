@@ -456,11 +456,11 @@ accept-count: 5000
 
 ## 마무리
 
-- `max-connections`, `accept-count` 는 애플리케이션이 사용하는 커넥션 수에 영향을 준다
-- `threads.max` 는 처리량(throughput)에 직접적인 영향을 주는 중요한 속성이다
-- `connection-timeout` 은 커넥션을 맺지 못할 때 발생하는 request timeout 과는 관련이 없다
+- `max-connections`, `accept-count` 는 애플리케이션이 사용하는 커넥션 수에 영향을 준다.
+- `threads.max` 는 처리량(throughput)에 직접적인 영향을 주는 중요한 속성이다.
+- `connection-timeout` 은 커넥션을 맺지 못할 때 발생하는 request timeout 과는 관련이 없다.
 - `max-connections` 이 충분히 큰 값으로 설정되어 있더라도, OS 가 수용할 수 있는 커넥션에는 한계가 있다.
-- `accept-count` 는 `max-connections` 을 초과했을 때 OS 가 connection 을 추가적으로 수락하도록 한다. 이것은 단순한 작업 큐 이상의 의미를 가진다.
+- `accept-count` 는 `max-connections` 을 초과했을 때 OS 가 connection 을 `accept-count` 만큼 추가적으로 수락할 수 있도록 하는 속성이다.
 
 최근 'Spring MVC 가 동시 접속자를 몇 명이나 처리할 수 있나요?' 라는 질문에 애매모호하게 대답할 수 밖에 없던게 아쉬워서 여기까지 오게 되었다. 조건에 따라서 변동폭이 매우 클 수 있어서 수치로 정량화하기 조심스럽고 어려운 내용이지만 그래도 정리해본다.
 
