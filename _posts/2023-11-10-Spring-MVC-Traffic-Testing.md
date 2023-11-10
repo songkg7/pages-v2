@@ -337,13 +337,13 @@ _closed 가 10k 에 미치지 못한다. 정상적으로 커넥션이 생성되�
 
 ![](https://i.imgur.com/ETTdN93.png)
 
-심지어 아무런 에러 없이 성공한다. 이로써 `max-connections` 은 OS 에 생성되는 애플리케이션의 **커넥션과 직접적으로 관련되어 있다**고 생각할 수 있다.
+심지어 아무런 에러 없이 성공한다. 이로써 `max-connections` 은 OS 에 생성되는 **커넥션의 수와 직접적으로 관련되어 있다**고 생각할 수 있다.
 
 #### 2. Connection Timeout
 
 > request timeout 은 TCP 연결을 맺지 못한 상태로 20s 가 경과하여 발생한 `connection-timeout` 설정 관련 에러일 것이다?
 
-이번에는 `max-connections` 는 다시 기본값으로 하고, `connection-timeout` 을 30s 로 수정한 후 다시 테스트를 실행해보자.
+이번에는 `max-connections` 를 다시 기본값으로 하고, `connection-timeout` 을 30s 로 수정한 후 다시 테스트를 실행해보자.
 
 ```yaml
 max-connections: 8192
@@ -375,12 +375,12 @@ accept-count: 2000 # 작업 큐
 
 결과는 아주 인상적이다. `max-connections` 을 전혀 늘리지 않았고 `accept-count` 만 늘려주었는데 10k 이상의 TCP 연결이 수락되었다.
 
-몇몇 블로그에서는 `accept-count` 에서 대기하는 작업(request)는 TCP connection 을 맺지 않는다고 설명하고 있다. '내가 혹시 설정을 잘못했나?' 싶어서 actuator 를 활용하여 애플리케이션의 설정을 확인해봤지만, 의도한대로 설정된 상태다.
+몇몇 블로그에서는 `accept-count` 에서 대기하는 작업(request)는 TCP connection 을 맺지 않는다고 설명하고 있었다. '내가 혹시 설정을 잘못했나?' 싶어서 actuator 를 활용하여 애플리케이션의 설정을 확인해봤지만, 의도한대로 설정된 상태다.
 
 ![](https://i.imgur.com/81Rk4Qj.png)
 _actuator 는 동작 중인 애플리케이션의 상태를 확인하는데 매우 유용하게 사용할 수 있다_
 
-`ServerProperties` 클래스의 javaDoc 을 보다가 이 의문에 대한 힌트를 발견할 수 있었다.
+`ServerProperties` 클래스의 javaDoc 을 살펴보면 이 의문에 대한 힌트를 발견할 수 있다.
 
 ```java
 /**
@@ -397,13 +397,19 @@ private int maxConnections = 8192;
 private int acceptCount = 100;
 ```
 
-`maxConnections` 필드를 보면 다음과 같은 주석이 있다.
+`maxConnections` 필드에 작성된 주석을 살펴보자.
 
 > Once the limit has been reached, the operating system may still accept connections based on the "acceptCount" property (제한에 도달한 뒤에도, 운영체제는 "acceptCount" 속성에 따라 여전히 커넥션을 수락할 수 있습니다.)
 
 `maxConnections` 제한에 도달하면, `acceptCount` 의 값만큼 OS 가 추가 커넥션을 수락하게 한다는 내용이다. 8192(thread) + 100(accept) = 8293(connection)[^fn-nth-3] 일 것이라는 기존의 가설을 뒷받침해주는 부분이다.
 
-정리하자면, `max-connections` 을 초과한 요청은 `acceptCount` 만큼 **TCP connection 이 수락된 상태에서 작업 큐(이런 이유로 acceptorQueue 라고도 한다)에서 대기**한다. NIO Connector 는 작업 큐에서 요청을 가져와서 남아있는 worker thread 에게 할당한다. `acceptCount` 만큼의 **작업 큐마저 꽉 찬다면 TCP connection 을 맺지 못하고 대기하다가 request timeout 이 발생**한다. `acceptCount` 는 최대 커넥션 개수와 너무나 밀접한 관계에 있다고 할 수 있겠다.
+정리하자면,
+
+1. `max-connections` 을 초과한 요청은 `acceptCount` 만큼 **TCP connection 이 수락된 상태에서 작업 큐(이런 이유로 acceptorQueue 라고도 한다)에서 대기**한다.
+2. NIO Connector 는 작업 큐에서 요청을 가져와서 남아있는 worker thread 에게 할당한다.
+3. `acceptCount` 만큼의 **작업 큐마저 꽉 찬다면 TCP connection 을 맺지 못하고 대기하다가 request timeout 이 발생**한다.
+
+`acceptCount` 는 최대 커넥션 개수와 너무나 밀접한 관계에 있다고 할 수 있겠다.
 
 ![](https://i.imgur.com/LVUTzYy.png)
 
@@ -429,7 +435,7 @@ _10k 성공_
 
 ## 얼마나 처리 가능할까?
 
-결론적으로, 현재 설정값으로 15000 vus 까지는 에러없이 처리할 수 있었다.
+OS level 의 설정을 조절하지 않고(ulimit 등) 애플리케이션 설정만 조절하는 것으로도 15000 vus 까지는 에러없이 처리할 수 있었다.
 
 ![](https://i.imgur.com/EQh4bqh.png)
 
