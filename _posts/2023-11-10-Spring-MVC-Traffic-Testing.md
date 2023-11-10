@@ -238,6 +238,8 @@ export default function () {
 
 ![](https://i.imgur.com/OegYzyC.png)
 
+`gracefulStop` 시간을 늘린 이후로는 타임아웃을 보기 전에 먼저 테스트가 종료되는 일이 발생하지 않는다.
+
 ### 3000 requests
 
 다시 한 번 고비가 온다.
