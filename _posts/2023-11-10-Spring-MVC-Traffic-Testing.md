@@ -97,7 +97,7 @@ docker build -t sample-server .
 
 ## K6
 
-K6 는 Grafana Lab 에서 만든 현대적인 부하테스트 툴이다. JavaScript 로 테스트 시나리오를 작성할 수 있으며, 굉장히 다양한 상황을 모의하여 테스트할 수 있다. Apache JMeter 또한 이번 테스트를 위해 사용할 수 있는 좋은 옵션 중 하나이지만, K6 는 테스트 결과를 시각화해줄 Grafana 와 통합하기 좋고 사용법이 어렵지 않아 쉽게 다양한 상황을 검증해볼 수 있다. 따라서 이번 테스트를 위해서는 K6 를 사용하기로 한다. 최근은 특히 JMeter 보다는 K6 를 먼저 고려하고 있다.
+[K6](https://k6.io/) 는 Grafana Lab 에서 만든 현대적인 부하테스트 툴이다. JavaScript 로 테스트 시나리오를 작성할 수 있으며, 굉장히 다양한 상황을 모의하여 테스트할 수 있다. [Apache JMeter](https://jmeter.apache.org/) 또한 이번 테스트를 위해 사용할 수 있는 좋은 옵션 중 하나이지만, K6 는 테스트 결과를 시각화해줄 Grafana 와 통합하기 좋고 사용법이 어렵지 않아 쉽게 다양한 상황을 검증해볼 수 있다. 따라서 이번 테스트를 위해서는 K6 를 사용하기로 한다. 최근은 특히 JMeter 보다는 K6 를 먼저 고려하고 있다.
 
 ### K6 설치
 
@@ -128,6 +128,10 @@ services:
     image: bitnami/grafana:latest
     ports:
       - "3000:3000"
+```
+
+```bash
+docker compose up -d
 ```
 
 InfluxDB 가 정상동작하는지 확인해보자. 만약 아래 명령어가 실행되지 않는다면, `brew install influxdb-cli` 를 통해 커맨드를 먼저 설치해줘야 한다.
