@@ -181,7 +181,7 @@ export default function () {
 간단하게 중요한 키워드만 설명해보면,
 
 - `constant-vus`: 테스트 실행 전 고정된 유저를 미리 생성해주는 executor
-- `vus`: vertual users 로, 테스트에 사용할 유저 수를 의미한다
+- `vus`: virtual users 로, 테스트에 사용할 유저 수를 의미한다
 
 ## 테스트 실행 및 분석
 
