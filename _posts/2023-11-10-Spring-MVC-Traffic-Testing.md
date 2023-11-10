@@ -1,5 +1,5 @@
 ---
-title: "1대의 서버 애플리케이션은 최대 몇 개의 요청을 동시에 감당할 수 있을까?"
+title: "1대의 서버 애플리케이션은 최대 몇 개의 동시 요청을 감당할 수 있을까?"
 date: 2023-11-10 12:57:26 +0900
 aliases: null
 tags: [test, k6, aws, stress-test, spike-test, performance-test, network, timeout, spring, mvc]
