@@ -15,6 +15,9 @@ image: /assets/img/2023-11-10-Spring-MVC-Traffic-Testing/k6-logo.png
 
 이후는 작성의 편의를 위해 '~한다'체를 사용합니다 🙏
 
+> 기술적인 오류나 오타 등의 잘못된 내용이 있다면 댓글로 알려주시면 감사하겠습니다 🙇‍♂️
+{: .prompt-info}
+
 ## Test Scenario
 
 - 동시에 200명 이상의 사용자가 API 를 요청하는 상황을 가정
@@ -22,10 +25,10 @@ image: /assets/img/2023-11-10-Spring-MVC-Traffic-Testing/k6-logo.png
 - Spring MVC 의 tomcat 설정을 조절해가면서 트래픽 처리량을 검증
 - 테스트 데이터의 오염을 방지하기 위해 API 는 EC2 에 배포해놓은 상태에서, 로컬에서 부하를 발생
 
-## Enviroment
+## Environment
 
 - EC2 t4g.small (Amazon Linux 2core 2GB 64bit ARM)
-- SpringBoot 3.x
+- SpringBoot 3.1.5
 - Spring MVC
 - Spring Actuator
 - K6
