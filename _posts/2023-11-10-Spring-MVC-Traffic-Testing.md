@@ -401,7 +401,7 @@ private int acceptCount = 100;
 
 > Once the limit has been reached, the operating system may still accept connections based on the "acceptCount" property (제한에 도달한 뒤에도, 운영체제는 "acceptCount" 속성에 따라 여전히 커넥션을 수락할 수 있습니다.)
 
-`maxConnections` 제한에 도달하면, `acceptCount` 의 값만큼 OS 가 추가 커넥션을 수락하게 한다는 내용이다. 8192(thread) + 100(accept) = 8293(connection)[^fn-nth-3] 일 것이라는 기존의 가설을 뒷받침해주는 부분이다.
+`maxConnections` 제한에 도달하면, `acceptCount` 의 값만큼 OS 가 추가 커넥션을 수락하게 한다는 내용이다. 8192(maxConnections) + 100(accept) = 8293[^fn-nth-3] 일 것이라는 기존의 가설을 뒷받침해주는 부분이다.
 
 정리하자면,
 
