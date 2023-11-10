@@ -422,7 +422,7 @@ private int acceptCount = 100;
 
 > `max-connections` 을 증가시키면 커넥션을 맺은 상태이기 때문에 connection timeout 을 회피할 수 있을 것이다?
 
-2번에서 살펴봤던 내용과 다소 일맥상통하는 부분이 있는 내용이다. `connection-timeout` 은 커넥션을 수락한 이후 종료되기 전까지의 유예 시간과 관련된 타임아웃 설정이다. `max-connections` 을 증가시켜서 회피할 수 있는 타임아웃은 커넥션이 자체가 수락되지 못해 발생하는 타임아웃이다. `max-connections` 으로 타임아웃을 회피할 수 있긴 하지만 그 종류가 다르다.
+2번에서 살펴봤던 내용과 다소 일맥상통하는 부분이 있는 내용이다. `connection-timeout` 은 커넥션을 수락한 이후 종료되기 전까지의 유예 시간과 관련된 타임아웃 설정이다. `max-connections` 을 증가시켜서 회피할 수 있는 타임아웃은 커넥션 자체가 수락되지 못해 발생하는 타임아웃이다. `max-connections` 으로 타임아웃을 회피할 수 있긴 하지만 그 종류가 다르다.
 
 #### 10k problem 결론
 
