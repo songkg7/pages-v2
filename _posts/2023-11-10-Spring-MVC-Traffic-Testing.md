@@ -483,6 +483,7 @@ accept-count: 5000
 
 ## Reference
 
+- [Grafana K6 로 부하테스트 시각화하기](https://velog.io/@heka1024/Grafana-k6%EC%9C%BC%EB%A1%9C-%EB%B6%80%ED%95%98-%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%95%98%EA%B8%B0)
 - [K6 spike test](https://k6.io/docs/test-types/spike-testing/)
 - [100k_concurrent_server](https://shdkej.com/blog/100k_concurrent_server/)
 - [spring-boot-configure-tomcat](https://www.baeldung.com/spring-boot-configure-tomcat)
