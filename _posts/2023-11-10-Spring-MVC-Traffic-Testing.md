@@ -375,7 +375,7 @@ accept-count: 2000 # 작업 큐
 
 결과는 아주 인상적이다. `max-connections` 을 전혀 늘리지 않았고 `accept-count` 만 늘려주었는데 10k 이상의 TCP 연결이 수락되었다.
 
-몇몇 블로그에서는 `accept-count` 에서 대기하는 작업(request)는 TCP connection 을 맺지 않는다고 설명하고 있었다. '내가 혹시 설정을 잘못했나?' 싶어서 actuator 를 활용하여 애플리케이션의 설정을 확인해봤지만, 의도한대로 설정된 상태다.
+몇몇 블로그에서는 `accept-count` 에서 대기하는 작업(request)은 TCP connection 을 맺지 않는다고 설명하고 있었다. '내가 혹시 설정을 잘못했나?' 싶어서 actuator 를 활용하여 애플리케이션의 설정을 확인해봤지만, 의도한대로 설정된 상태다.
 
 ![](https://i.imgur.com/81Rk4Qj.png)
 _actuator 는 동작 중인 애플리케이션의 상태를 확인하는데 매우 유용하게 사용할 수 있다_
