@@ -150,7 +150,7 @@ influx ping
 
 InfluxDB 를 datasource 로 설정한 뒤 [K6 dashboard](https://grafana.com/grafana/dashboards/2587-k6-load-testing-results/) URL 을 복사하여 import 해주면 모니터링 구성이 완료된다.
 
-![image](https://i.imgur.com/nmxIbXm.png)
+![image](https://i.imgur.com/nmxIbXm.webp)
 _5분이면 모니터링 환경 구성 끝...!_
 
 ### Test script 작성
@@ -197,13 +197,13 @@ k6 run --out influxdb=http://localhost:8086/myk6db spike-test.js
 
 - 스레드 풀의 max 스레드 수는 200개이고, 작업 큐(acceptCount)는 100이다. 따라서 200개의 요청은 바로 처리되고 이어서 100개의 요청이 처리될 것이다
 
-![Imgur](https://i.imgur.com/bVfAhxd.png)
+![Imgur](https://i.imgur.com/bVfAhxd.webp)
 
 예상대로 5초 간격으로 200개의 요청이 먼저 처리되고 뒤이어 100개의 나머지 요청이 처리되었다.
 
 ### 1000 requests
 
-![](https://i.imgur.com/RhJG0Wq.png)
+![](https://i.imgur.com/RhJG0Wq.webp)
 
 역시나 5초 간격으로 요청을 처리하는 것을 확인할 수 있다. 총 처리 시간은 25s 남짓이 걸린다. 가장 빠르게 접근한 사용자는 5.01s 만에 결과를 확인하겠지만, 그렇지 못한 사용자는 25s 를 기다려야 결과를 확인할 수 있다.
 
@@ -236,7 +236,7 @@ export default function () {
 };
 ```
 
-![](https://i.imgur.com/OegYzyC.png)
+![](https://i.imgur.com/OegYzyC.webp)
 
 `gracefulStop` 시간을 늘린 이후로는 타임아웃을 보기 전에 먼저 테스트가 종료되는 일이 발생하지 않는다.
 
@@ -244,7 +244,7 @@ export default function () {
 
 다시 한 번 고비가 온다.
 
-![](https://i.imgur.com/rM78o5F.png)
+![](https://i.imgur.com/rM78o5F.webp)
 
 이번에는 요청이 1분 정도 대기하게 되면서 request timeout 이 발생한다.
 
@@ -270,9 +270,9 @@ docker run -d -p "80:8080" \
 
 이후 다시 한 번 테스트를 해보면...
 
-![](https://i.imgur.com/IaRf7y3.png)
+![](https://i.imgur.com/IaRf7y3.webp)
 
-![](https://i.imgur.com/xLVxU9w.png)
+![](https://i.imgur.com/xLVxU9w.webp)
 
 예상대로 타임아웃 없이 처리되는 것을 확인할 수 있다.
 
@@ -280,11 +280,11 @@ docker run -d -p "80:8080" \
 
 ### 6000 requests
 
-![](https://i.imgur.com/3dorRSj.png)
+![](https://i.imgur.com/3dorRSj.webp)
 
 스레드 풀을 500 으로 늘렸지만, 6000 requests 부터는 다시 request timeout 이 발생한다. 동시처리량을 더 늘려야할 필요가 있다. 좀 전에 했던 방법처럼 스레드 개수를 더 늘리면 어떨까? 스레드가 너무 많으면 리소스 경합이 발생하므로 그다지 바람직하지 못하지만, 우선 가능할 때까지 스레드를 늘리는 방향으로 생각해보자. 이전과 같은 방식을 사용하여 1000 개로 늘려줬다.
 
-![](https://i.imgur.com/l7uzhej.png)
+![](https://i.imgur.com/l7uzhej.webp)
 _thread pool 1000 에서 다시 성공_
 
 다행히 스레드 1000개 정도는 2core 2GB 의 EC2 성능으로도 충분한 것 같다. resource 사용량도 크게 높아지지 않았으며 안정적이였다.
@@ -293,7 +293,7 @@ _thread pool 1000 에서 다시 성공_
 
 드디어 최소한의 설정 수정으로 10k 의 동시 요청에 도달했다. 하지만 지금까지 볼 수 없던 에러가 쏟아지기도 했다.
 
-![](https://i.imgur.com/IFYLBPd.png)
+![](https://i.imgur.com/IFYLBPd.webp)
 
 - cannot allocate memory
 - connection reset by peer
@@ -307,12 +307,12 @@ _thread pool 1000 에서 다시 성공_
 watch ss -s
 ```
 
-![](https://i.imgur.com/LCIm2BW.png)
+![](https://i.imgur.com/LCIm2BW.webp)
 _closed 가 10k 에 미치지 못한다. 정상적으로 커넥션이 생성되었다면 10k 를 넘었을 것이다._
 
 10k 의 TCP 커넥션을 맺을 수 없는 것을 확인했다. 지금까지는 유저의 수대로 정확하게 TCP 커넥션이 증가하는 것을 확인했는데 처음으로 커넥션 개수가 요청 수보다 모자라기 시작한다.
 
-![](https://i.imgur.com/IbJrKrz.png)
+![](https://i.imgur.com/IbJrKrz.webp)
 
 정상적으로 종료되지 않은 커넥션이 정리될때까지 약간의 텀을 두고 몇 번을 반복해도 8293 vus 만 성공했다. 왜 그럴까?
 
@@ -331,11 +331,11 @@ _closed 가 10k 에 미치지 못한다. 정상적으로 커넥션이 생성되�
 
 먼저 max connection 값을 20k 로 증가시키고 테스트를 실행한다.
 
-![](https://i.imgur.com/7wQDXG6.png)
+![](https://i.imgur.com/7wQDXG6.webp)
 
 오호... 이전과는 다르게 커넥션이 10k 를 넘겨서 생성되었다.
 
-![](https://i.imgur.com/ETTdN93.png)
+![](https://i.imgur.com/ETTdN93.webp)
 
 심지어 아무런 에러 없이 성공한다. 이로써 `max-connections` 은 OS 에 생성되는 **커넥션의 수와 직접적으로 관련되어 있다**고 생각할 수 있다.
 
@@ -369,15 +369,15 @@ accept-count: 2000 # 작업 큐
 
 `accept-count` 가 100 일 때 성공한 요청 수는 8293 이였다. 2000 으로 늘리면 10k 이상의 요청을 처리할 수 있을까? 혹은 TCP 연결 수락 개수와 작업 큐가 직접적인 관련은 없을테니 여전히 실패할까? 백문이불여일견, 직접 확인해보자.
 
-![](https://i.imgur.com/9MohYiI.png)
+![](https://i.imgur.com/9MohYiI.webp)
 
-![](https://i.imgur.com/B6aR4Y8.png)
+![](https://i.imgur.com/B6aR4Y8.webp)
 
 결과는 아주 인상적이다. `max-connections` 을 전혀 늘리지 않았고 `accept-count` 만 늘려주었는데 10k 이상의 TCP 연결이 수락되었다.
 
 몇몇 블로그에서는 `accept-count` 에서 대기하는 작업(request)은 TCP connection 을 맺지 않는다고 설명하고 있었다. '내가 혹시 설정을 잘못했나?' 싶어서 actuator 를 활용하여 애플리케이션의 설정을 확인해봤지만, 의도한대로 설정된 상태다.
 
-![](https://i.imgur.com/81Rk4Qj.png)
+![](https://i.imgur.com/81Rk4Qj.webp)
 _actuator 는 동작 중인 애플리케이션의 상태를 확인하는데 매우 유용하게 사용할 수 있다_
 
 `ServerProperties` 클래스의 javaDoc 을 살펴보면 이 의문에 대한 힌트를 발견할 수 있다.
@@ -411,7 +411,7 @@ private int acceptCount = 100;
 
 `acceptCount` 는 최대 커넥션 개수와 너무나 밀접한 관계에 있다고 할 수 있겠다.
 
-![](https://i.imgur.com/LVUTzYy.png)
+![](https://i.imgur.com/LVUTzYy.webp)
 
 > 그렇다면 `threads.max`, `max-connections`, `accept-count` 를 모두 1로 할당하면 어떻게 될까?
 >
@@ -428,16 +428,16 @@ private int acceptCount = 100;
 
 maxConnections 과 acceptCount 모두 최대 커넥션에 영향을 주므로 둘의 합이 10k 를 넘게 한다면 동시 발생하는 10k 커넥션도 꽤 여유롭게 수락할 수 있다. 적절한 비율은 커넥션 생성 비용 및 스레드 생성 개수를 따져봐야할 것이다.
 
-![](https://i.imgur.com/kqFYz7r.png)
+![](https://i.imgur.com/kqFYz7r.webp)
 
-![](https://i.imgur.com/4t3cnnO.png)
+![](https://i.imgur.com/4t3cnnO.webp)
 _10k 성공_
 
 ## 얼마나 처리 가능할까?
 
 OS level 의 설정을 조절하지 않고(ulimit 등) 애플리케이션 설정만 조절하는 것으로도 15000 vus 까지는 에러없이 처리할 수 있었다.
 
-![](https://i.imgur.com/EQh4bqh.png)
+![](https://i.imgur.com/EQh4bqh.webp)
 
 설정은 아래처럼 사용했다.
 
