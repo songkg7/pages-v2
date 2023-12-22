@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-theme-chirpy (6.2.3)
+    jekyll-theme-chirpy (6.3.1)
       jekyll (~> 4.3)
       jekyll-archives (~> 2.2)
       jekyll-include-cache (~> 0.2)
@@ -25,9 +25,9 @@ GEM
     eventmachine (1.2.7)
     ffi (1.16.3)
     forwardable-extended (2.6.0)
-    google-protobuf (3.25.0-arm64-darwin)
-    google-protobuf (3.25.0-x86_64-darwin)
-    google-protobuf (3.25.0-x86_64-linux)
+    google-protobuf (3.25.1-arm64-darwin)
+    google-protobuf (3.25.1-x86_64-darwin)
+    google-protobuf (3.25.1-x86_64-linux)
     html-proofer (4.4.3)
       addressable (~> 2.3)
       mercenary (~> 0.3)
