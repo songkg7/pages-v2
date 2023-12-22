@@ -46,7 +46,7 @@ public class VerboseLanguage {
 javac VerboseLanguage.java
 ```
 
-![](https://i.imgur.com/xPMY0Ib.webp)
+![](https://i.imgur.com/xPMY0Ib.png)
 
 클래스 파일이 생성된 것을 확인할 수 있다. `java` 명령어를 사용해서 클래스 파일을 실행시킬 수 있으며, 여기까지가 자바로 작성한 프로그램을 실행시키는 기본 흐름이다.
 
@@ -59,7 +59,7 @@ class 파일이 어떤 내용으로 이루어졌는지 궁금하지 않은가? �
 
 기대를 안고 열어보면,
 
-![](https://i.imgur.com/t9WAXdz.webp)
+![](https://i.imgur.com/t9WAXdz.png)
 _어림도 없지_
 
 바이너리(binary)라는 짤막한 내용만 표시된다.
@@ -76,7 +76,7 @@ _아니 지금까지 컴파일의 결과물은 바이트 코드라며...?_
 
 그래도 나름 이 글의 주제가 Deep-dive 를 표방하고 있는만큼 꾸역꾸역 변환하여 읽어봤다.
 
-![](https://i.imgur.com/WwrGlp0.webp)
+![](https://i.imgur.com/WwrGlp0.png)
 _다행히 우리들의 판도라의 상자 안에는 0 과 1 이 들어있을 뿐, 별 다른 고난이나 역경은 들어있지 않다._
 
 읽어내는데는 성공했지만, 0 과 1 만 가지고는 도저히 내용을 알기 어렵다 🤔
@@ -89,7 +89,7 @@ _다행히 우리들의 판도라의 상자 안에는 0 과 1 이 들어있을 �
 
 바이트 코드를 개발자가 해석하기 편한 형태로 변환하는 과정을 **역어셈블(disassemble)** 이라고 한다. 가끔 이 과정을 역컴파일(decompile)이라고도 하는 것 같은데, `javap` 문서에는 명확하게 disassemble 이라고 표현하고 있으므로 이를 따르도록 하겠다.
 
-![](https://i.imgur.com/vct9MSZ.webp)
+![](https://i.imgur.com/vct9MSZ.png)
 
 > 역컴파일의 경우는 말 그대로 바이트코드를 컴파일 하기 전처럼, 상대적으로 고수준의 언어로 표현하는 것을 말한다. 반면, 역어셈블은 바이트코드를 사람이 읽을 수 있는 특정 형식으로 표현해주는 것을 말한다.
 {: .prompt-info}
@@ -161,7 +161,7 @@ _Hello World_
 
 참고로 getstatic, invokevirtual 같은 바이트 코드 명령어 opcode 들은 1바이트의 바이트 번호로 표현된다. getstatic=0xb2, invokevirtual = 0xb6 등이다. 1바이트는 256가지 종류의 수를 표현할 수 있으므로, 자바 바이트 코드 명령어 opcode 역시 **최대 256개**라는 점을 알 수 있다.
 
-![](https://i.imgur.com/FlBgfx7.webp)
+![](https://i.imgur.com/FlBgfx7.png)
 _JVM Instruction Set 에 명시된 invokevirtual 의 바이트 코드_
 
 main method 의 바이트 코드만 hex 로 보면 다음과 같다.
