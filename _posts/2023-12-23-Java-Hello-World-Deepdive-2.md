@@ -272,5 +272,5 @@ SourceFile: "VerboseLanguage.java"
 ## Reference
 
 - [명령어 코드](https://seung-nari.tistory.com/entry/%EC%BB%B4%ED%93%A8%ED%84%B0-%EA%B5%AC%EC%A1%B0-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%BD%94%EB%93%9C-OP-Code-Mode-Operand)
-- [JVM Architecture, 제대로 이해하기](https://gngsn.tistory.com/252)
 - [Naver D2](https://d2.naver.com/helloworld/1230)
+- JVM specification
