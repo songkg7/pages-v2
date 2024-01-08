@@ -76,7 +76,7 @@ Method Area 는 클래스 및 인터페이스 정의를 저장하는 공유 데�
 
 ##### Run-Time Constant Pool
 
-Run-Time Constant Pool 은 Method Area 의 일부로 클래스 및 인터페이스 이름, 필드 이름, 메서드 이름에 대한 심볼릭 참조를 포함한다. JVM 은 Run-Time Constant Pool 을 통해 실제 메모리상 주소를 찾아서 참조할 수 있다.
+**Run-Time Constant Pool 은 Method Area 의 일부**로 클래스 및 인터페이스 이름, 필드 이름, 메서드 이름에 대한 심볼릭 참조를 포함한다. JVM 은 Run-Time Constant Pool 을 통해 실제 메모리상 주소를 찾아서 참조할 수 있다.
 
 앞서 바이트코드를 분석하며 클래스 파일 내부에 constant pool 이 있는 것을 확인했었다. 런타임에는 클래스파일 구조의 일부였던 constant pool 을 읽고 클래스로더에 의해 메모리에 적재되게 된다.
 
@@ -95,7 +95,7 @@ String s2 = new String("Hello World");
 
 생성자 내에서 사용된 문자열 리터럴은 String Pool 에서 가져온 것이지만, `new` 키워드는 새롭고 고유한 문자열 생성을 보장해준다.
 
-```
+```text
 0: ldc           #7                  // String Hello World
 2: astore_1
 3: new           #9                  // class java/lang/String
@@ -110,13 +110,14 @@ String s2 = new String("Hello World");
 
 invokespecial 은 객체 초기화 메서드가 직접 호출된다는걸 의미한다.
 
-왜 Method Area 에 존재하는 Run-Time Constant Pool 과는 달리 String Constant Pool 은 Heap 에 존재할까? 문자열은 굉장히 큰 객체에 속한다. 또한 얼마나 생성될지 알기 어렵기 때문에, 메모리 공간을 효율적으로 사용하기 위해서는 사용되지 않는 문자열을 정리하는 과정이 필요하다. 즉, Heap 영역에 존재하는 GC 가 필요하다는 의미다.
+왜 Method Area 에 존재하는 Run-Time Constant Pool 과는 달리 String Constant Pool 은 Heap 에 존재할까? 🤔
 
-문자열은 불변으로 관리된다. 수정은 허용되지 않으며, 항상 새롭게 생성된다. 이미 생성된 적이 있다면 재활용함으로써 메모리 공간을 절약한다(=interning). 하지만 참조되지 않는 문자열이 생길 수 있으며, 애플리케이션의 생명 주기동안 계속해서 쌓여갈 것이다. 메모리를 효율적으로 활용하기 위해 참조되지 않는(unreachable) 문자열을 정리할 필요가 있고, 이 말은 GC 가 필요하다는 말과 동일하다. 결국 String Constant Pool 은 GC 의 영향력 아래에 놓이기 위해 Heap 영역에 존재해야할 필요가 있었다.
+- 문자열은 굉장히 큰 객체에 속한다. 또한 얼마나 생성될지 알기 어렵기 때문에, 메모리 공간을 효율적으로 사용하기 위해서는 사용되지 않는 문자열을 정리하는 과정이 필요하다. 즉, **Heap 영역에 존재하는 GC 가 필요하다**는 의미다.
+  - 스택에 저장한다면 공간을 찾기 힘들어서 문자열 선언 자체가 실패할 수 있다.
+  - 스택의 크기는 32bit 에서는 320kb~1MB, 64bit 에서는 1MB~2MB 정도를 기본값으로 가진다.
+- 문자열은 불변으로 관리된다. 수정은 허용되지 않으며, 항상 새롭게 생성된다. 이미 생성된 적이 있다면 재활용함으로써 메모리 공간을 절약한다(=interning). 하지만 참조되지 않는 문자열이 생길 수 있으며, 애플리케이션의 생명 주기동안 계속해서 쌓여갈 것이다. 메모리를 효율적으로 활용하기 위해 참조되지 않는(unreachable) 문자열을 정리할 필요가 있고, 이 말은 다시 한 번 **GC 가 필요하다**는 말로 귀결된다.
 
-문자열은 특성상 어디까지 커질지 가늠하기가 불가능하다. 스택에 저장한다면 공간을 찾기 힘들어서 문자열 선언 자체가 실패할 수 있다.
-
-- 스택의 크기는 32bit 에서는 320kb~1MB, 64bit 에서는 1MB~2MB 정도를 기본값으로 가진다.
+결국 String Constant Pool 은 GC 의 영향력 아래에 놓이기 위해 Heap 영역에 존재해야할 필요가 있다.
 
 문자열 비교 연산은 길이가 N 이라면 완벽하게 일치하기 위한 판단에 N 번의 연산이 필요하다. 반면 풀을 사용한다면, equals 비교로 ref 체크만 하면 되므로 $O(1)$ 의 비용이 든다.
 
@@ -239,9 +240,9 @@ _음... 🤔 Hello World 정도요._
 ## Reference
 
 - [inpa blog](https://inpa.tistory.com/entry/JAVA-%E2%98%95-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%8A%94-%EC%96%B8%EC%A0%9C-%EB%A9%94%EB%AA%A8%EB%A6%AC%EC%97%90-%EB%A1%9C%EB%94%A9-%EC%B4%88%EA%B8%B0%ED%99%94-%EB%90%98%EB%8A%94%EA%B0%80-%E2%9D%93#jvm%EC%9D%98_%ED%81%B4%EB%9E%98%EC%8A%A4_%EB%A1%9C%EB%8D%94_class_loader)
-- https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.5
-- https://www.baeldung.com/java-jvm-run-time-data-areas
-- https://sgcomputer.tistory.com/64
-- https://johngrib.github.io/wiki/java/run-time-constant-pool/
-- https://johngrib.github.io/wiki/jvm-stack/
-- https://code-run.tistory.com/8
+- <https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.5>
+- <https://www.baeldung.com/java-jvm-run-time-data-areas>
+- <https://sgcomputer.tistory.com/64>
+- <https://johngrib.github.io/wiki/java/run-time-constant-pool/>
+- <https://johngrib.github.io/wiki/jvm-stack/>
+- <https://code-run.tistory.com/8>
