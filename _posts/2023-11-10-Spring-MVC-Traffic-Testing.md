@@ -5,6 +5,7 @@ aliases: null
 tags: [test, k6, aws, stress-test, spike-test, performance-test, network, timeout, spring, mvc]
 categories: null
 image: /assets/img/2023-11-10-Spring-MVC-Traffic-Testing/k6-logo.webp
+pin: true
 ---
 
 ## Overview
