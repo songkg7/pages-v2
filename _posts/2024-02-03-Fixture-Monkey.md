@@ -104,11 +104,13 @@ val actual: Product = Product(
 
 Fixture Monkey 는 재사용성, 랜덤성을 통해 상술했던 문제점을 우아하게 해결한다. 지금부터 어떻게 문제를 해결하는지 살펴보자.
 
+먼저 의존성을 추가해준다.
+
 ```kotlin
 testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter-kotlin:1.0.13")
 ```
 
-먼저 의존성을 추가해준다.
+`KotlinPlugin()` 을 적용하여 Kotlin 환경에서도 Fixture Monkey 가 원활하게 동작하도록 한다.
 
 ```kotlin
 @Test
@@ -118,8 +120,6 @@ fun test() {
         .build()
 }
 ```
-
-`KotlinPlugin()` 을 적용하여 Kotlin 환경에서도 Fixture Monkey 를 사용할 수 있다.
 
 위에서 사용했던 `Product` 클래스를 가지고 다시 테스트를 작성해보자.
 
