@@ -90,7 +90,7 @@ something:
 ```java
 @Slf4j
 @Component
-public class HelloWorldConfig {
+public class HelloWorld {
 
     @Value("${something.hello}")
     private String hello;
