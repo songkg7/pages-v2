@@ -1,13 +1,13 @@
 ---
 title: AWS S3 를 사용한 env 관리 방법 및 자동화
 date: 2024-03-16 17:56:45 +0900
-aliases: 
+aliases:
 tags:
-  - cli
-  - bash
-  - automation
-  - s3
-categories: 
+    - cli
+    - bash
+    - automation
+    - s3
+categories:
 image: /assets/img/banner/aws-banner.png
 updated: 2024-03-16 18:05:53 +0900
 ---
@@ -101,6 +101,9 @@ public class HelloWorldConfig {
     }
 }
 ```
+
+![](https://i.imgur.com/2xsaxSq.png)
+_SystemEnvironmentPropertySource.java_
 
 ![](https://i.imgur.com/ht8Wkin.png)
 
