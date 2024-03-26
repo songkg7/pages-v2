@@ -414,9 +414,7 @@ private int acceptCount = 100;
 
 ![](https://i.imgur.com/LVUTzYy.webp)
 
-> 그렇다면 `threads.max`, `max-connections`, `accept-count` 를 모두 1로 할당하면 어떻게 될까?
->
-> 처리량에 따라서 시간 안에 connection 이 수락되지 않은 요청은 timeout 이 발생할 것이다. 현재 환경에서는 3개가 성공하고 7개가 실패했다. 여기서 `acceptCount` 를 10으로 늘리면, 모든 요청에 커넥션이 수락되므로 모두 성공한다.
+> 그렇다면 `threads.max`, `max-connections`, `accept-count` 를 모두 1로 할당하면 어떻게 될까? 처리량에 따라서 시간 안에 connection 이 수락되지 않은 요청은 timeout 이 발생할 것이다. 현재 환경에서는 3개가 성공하고 7개가 실패했다. 여기서 `acceptCount` 를 10으로 늘리면, 모든 요청에 커넥션이 수락되므로 모두 성공한다.
 {: .prompt-tip}
 
 #### 4. Max Connections 와 Connection Timeout
