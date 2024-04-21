@@ -1,11 +1,15 @@
 ---
-title: "PostgreSQL 에서 SELECT FOR UPDATE 구문의 동작방식"
+title: PostgreSQL 에서 SELECT FOR UPDATE 구문의 동작방식
 date: 2024-04-20 21:55:13 +0900
-aliases: null
-tags: [postgresql, transaction, 2pl]
-categories: null
+aliases: 
+tags:
+  - postgresql
+  - transaction
+  - 2pl
+categories: 
 mermaid: true
 image: /assets/img/banner/PostgreSQL-banner.webp
+updated: 2024-04-20 22:14:06 +0900
 ---
 
 ## SELECT FOR UPDATE 구문의 동작 방식
