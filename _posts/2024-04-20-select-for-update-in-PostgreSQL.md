@@ -162,9 +162,11 @@ sequenceDiagram
     A->>DB: commit
     deactivate DB
     B->>DB: select where id = 1<br/>for update
+    activate DB
     DB->>B: id=1,name='A'
     B->>DB: update set name = 'B'<br/>where id = 1
     B->>DB: commit
+    deactivate DB
 ```
 
 모든 작업을 순차적으로 처리하도록 보장하고 싶다면 모든 트랜잭션이 `select for update` 를 사용하여 lock 을 획득할 수 있도록 해야 합니다.
